@@ -1,1 +1,1 @@
-# AzureAILabs
+# Azure AI Hands-on Labs
