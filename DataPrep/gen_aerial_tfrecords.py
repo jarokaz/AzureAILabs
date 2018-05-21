@@ -13,33 +13,12 @@ import random
 
 import tensorflow as tf
 
-TINY_IMAGENET_URL = 'http://cs231n.stanford.edu/tiny-imagenet-200.zip'
-TINY_IMAGENET = 'tiny-imagenent-200.zip'
 
 FLAGS = tf.app.flags.FLAGS
-
-# Default global parameters
-tf.app.flags.DEFINE_string('data_dir', '../data/tiny-imagenet', "Output dir")
  
-def download_and_extract(data_dir):
-  
-  assert os.path.isdir(data_dir)
-  
-  filepath = os.path.join(data_dir, TINY_IMAGENET)
-  
-  if not os.path.exists(filepath):
-    print("Downloading {0} to {1}".format(TINY_IMAGENET_URL, filepath))
-    urllib.request.urlretrieve(TINY_IMAGENET_URL, filepath)
-  else:
-    print("{0} already downloaded".format(filepath))
-  
-  if not os.path.exists(os.path.join(data_dir, 'tiny-imagenet-200')):
-    print("Extracting files to {0}".format('tiny-imagenet-200'))
-    with zipfile.ZipFile(os.path.join(data_dir, TINY_IMAGENET), "r") as zip_file:
-      zip_file.extractall(data_dir)
-    
-  return os.path.join(data_dir, 'tiny-imagenet-200')
-    
+tf.app.flags.DEFINE_string('data_dir', '../../data/aerial', "Directory with training and testing images")
+tf.app.flags.DEFINE_string('out_dir', '../../data/aerial_tfrecords', "Output directory to hold tfrecords")
+
 
 def convert_to_tfrecord(dataset, output_file):
   """Converts a file to TFRecords."""
@@ -64,65 +43,45 @@ def convert_to_tfrecord(dataset, output_file):
                            
 def main(argv=None):
   
-  def map_labels(input_dir):
-    wnids = os.path.join(input_dir, 'wnids.txt')
-    assert os.path.exists(wnids)
-    with open(wnids) as f:
-      classes = [l.strip() for l in f]
-    classes_to_labels = {class_name: label for label, class_name in enumerate(classes)}
-    return classes_to_labels
+  # Map class labels to integers
+  class_to_label = {'Barren':0, 'Cultivated':1, 'Developed':2, 'Forest':3, 'Herbaceous':4, 'Shrub':5}
 
-  # Download and extract
-  root_folder = download_and_extract(FLAGS.data_dir)
-                   
-  # Create numeric labels from orginal string ones
-  print("Writing text to numeric mapping to: {0}".format('labels.txt'))
-  class_to_labels = map_labels(root_folder)
-  with open(os.path.join(FLAGS.data_dir, 'labels.txt'), 'w') as f:
-    for key, value in class_to_labels.items():
-      f.write("{0} {1}\n".format(key, value))
-                   
   # Create a list of training images with labels
   dataset = []
-  for folder in os.listdir(os.path.join(root_folder, 'train')):
-    for image in os.listdir(os.path.join(root_folder, 'train', folder, 'images')):
+  for folder in os.listdir(os.path.join(FLAGS.data_dir, 'train')):
+    for image in os.listdir(os.path.join(FLAGS.data_dir, 'train', folder)):
       dataset.append(
-        (os.path.join(root_folder, 'train', folder, 'images', image),
-        class_to_labels[image[0: image.rfind('_')]]))
+        (os.path.join(FLAGS.data_dir, 'train', folder, image),
+        class_to_label[folder]))
          
   # Shuffle the list
   random.shuffle(dataset)
+  filename = os.path.join(FLAGS.out_dir, 'aerial_train.tfrecords')
   
-  # Create ten tfrecord files
-  num_shards = 10
-  name_prefix = "training_"
-  name_suffix = ".tfrecords"
-  shard_size = len(dataset)//10
-  
-  for i in range(num_shards):
-    filename = name_prefix + str(i+1) + name_suffix
-    filename = os.path.join(FLAGS.data_dir, filename)
-    if not os.path.exists(filename):
-      convert_to_tfrecord(dataset[i*shard_size: (i+1)*shard_size], filename) 
-  
-  # Create a list of validation images with labels
+  if  os.path.exists(filename):
+    print("File {0} already exists. Aborting ...".format(filename))
+    return
+
+  convert_to_tfrecord(dataset, filename) 
+
+  # Create a list of training images with labels
   dataset = []
-  with open(os.path.join(root_folder, 'val', 'val_annotations.txt'), 'r')  as f:
-    for line in f:
-      filename, classname, _, _, _, _ = line.split('\t') 
+  for folder in os.listdir(os.path.join(FLAGS.data_dir, 'test')):
+    for image in os.listdir(os.path.join(FLAGS.data_dir, 'test', folder)):
       dataset.append(
-        (os.path.join(root_folder, 'val', 'images', filename),
-        class_to_labels[classname]))
-         
+        (os.path.join(FLAGS.data_dir, 'test', folder, image),
+        class_to_label[folder]))
+
   # Shuffle the list
   random.shuffle(dataset)
-  
-  # Create ten tfrecord files
-  filename = "validation.tfrecords" 
-  filename = os.path.join(FLAGS.data_dir, filename)
-  if not os.path.exists(filename):
-    convert_to_tfrecord(dataset, filename) 
-  
+  filename = os.path.join(FLAGS.out_dir, 'aerial_validate.tfrecords')
+   
+  if  os.path.exists(filename):
+    print("File {0} already exists. Aborting ...".format(filename))
+    return
+
+  convert_to_tfrecord(dataset, filename) 
+
   print('Done!')
  
 
