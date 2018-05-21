@@ -1,8 +1,6 @@
 import tensorflow as tf
-from tensorflow.python.keras.datasets import mnist, cifar10
 from tensorflow.python.keras import Model, Input
 from tensorflow.python.keras.layers import Dense, Dropout, Flatten, Conv2D, MaxPooling2D
-from tensorflow.python.keras.optimizers import Adadelta, Adam
 from tensorflow.python.keras.callbacks import TensorBoard
 
 from tensorflow.python.keras.applications.resnet50 import ResNet50 
@@ -15,12 +13,12 @@ NUM_CLASSES = 6
 INPUT_NAME = 'images'
 
 
-def model_network(hidden_units):
+def network(hidden_units):
   
     input = Input(shape=IMAGE_SHAPE, name=INPUT_NAME)
     conv_base = ResNet50(weights='imagenet',
                    include_top=False,
-                   pooling = 'avg'
+                   pooling = 'avg',
                    input_tensor=input)
     
     for layer in conv_base.layers:
