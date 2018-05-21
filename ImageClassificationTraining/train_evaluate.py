@@ -29,8 +29,8 @@ def _parse(example_proto, augment):
   image = scale_image(image)
   image = tf.reshape(image, model.IMAGE_SHAPE)
   
-  if augment:
-    image = tf.image.random_flip_left_right(image)
+  #if augment:
+  #  image = tf.image.random_flip_left_right(image)
      
   label = features['label']
   #label = tf.one_hot(label, NUM_CLASSES)
@@ -107,7 +107,7 @@ def train_evaluate():
                                     batch_size=FLAGS.batch_size, 
                                     num_parallel_calls=FLAGS.num_parallel_calls)
     
-  valid_input_fn = lambda: input_fn(data_file=FLAGS.validation_file, 
+  valid_input_fn = lambda: input_fn(data_file=FLAGS.training_file, 
                                     is_training=False, 
                                     batch_size=FLAGS.batch_size, 
                                     num_parallel_calls=FLAGS.num_parallel_calls)
