@@ -6,7 +6,7 @@
 **/tiny-imagenet
 **/temp
 **/tmp
-**/SaveModel
 **/logdir
+**/*.h5
 
 
