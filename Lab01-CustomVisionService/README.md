@@ -68,7 +68,11 @@ https://portal.azure.com
 
 https://https://your-vm-ip:8000.
 
-7. Click on *New*, open a terminal window and clone Azure AI Labs repo under the `notebooks' folder
+7. Click on *New* and open a terminal window
+
+![Terminal](images/img30.PNG)
+
+8. Clone Azure AI Labs repo under the `notebooks' folder
 
 ```
 cd notebooks
