@@ -25,7 +25,7 @@ You will train a custom image classification model to automatically classify the
 
 Developed | Cultivated | Barren
 --------- | ------ | ----------
-![Developed](Dataset/train/Developed/ortho_1-1_hn_s_ca025_2016_1_104257.png) | ![Barren](Datasettrain/Cultivated/ortho_1-1_hn_s_ca025_2016_1_9900.png) | ![Cultivated](Dataset/train/Barren/ortho_1-1_hn_s_ca025_2016_1_7359.png)
+![Developed](Dataset/train/Developed/ortho_1-1_hn_s_ca025_2016_1_104257.png) | ![Barren](Dataset/train/Cultivated/ortho_1-1_hn_s_ca025_2016_1_9900.png) | ![Cultivated](Dataset/train/Barren/ortho_1-1_hn_s_ca025_2016_1_7359.png)
 
 
 ## Lab environment
