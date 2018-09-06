@@ -64,17 +64,16 @@ https://portal.azure.com
   - Use *D4s_V3* or similar for the VM type
   - Leave all other parameters at default values
   
-6. DSVM comes preconfigured with Jupyter Notebook and Jupyter Lab. You will use Jupyter Lab. After your DSVM is ready, navigate to the below URL. Your browser may complain abouth an invalid certificate - ignore the warnings and proceed to log in using the credentials you created during the VM setup. 
+6. DSVM comes preconfigured with Jupyter. After your DSVM is ready, navigate to the below URL. Your browser may complain abouth an invalid certificate - ignore the warnings and proceed to log in using the credentials you created during the VM setup. 
 
-https://https://your-vm-ip:8000/user/your-username/lab.
+https://https://your-vm-ip:8000.
 
-7. You should see Jupyter Lab web portal
+7. Click on *New*, open a terminal window and clone Azure AI Labs repo under the `notebooks' folder
 
-![Jupyter](images/img21.PNG)
-
-7. Open a terminal window and clone Azure AI Labs repo under the notebooks folder
-
-![Clone](images/img20.PNG)
+```
+cd notebooks
+git clone <repo URL git file>
+```
 
 ### Provision and configure Custom Vision Service
 
@@ -103,7 +102,7 @@ https://portal.azure.com
 
 Congratulations! Your lab environment is ready.
 
-Navigate back to the Jupyter Lab and start `train.ipynb` notebook.
+Navigate back to Jupyter and start `train.ipynb` notebook.
 
 
 
