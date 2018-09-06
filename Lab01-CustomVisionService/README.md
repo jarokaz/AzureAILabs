@@ -72,11 +72,11 @@ https://https://your-vm-ip:8000.
 
 ![Terminal](images/img30.PNG)
 
-8. Clone Azure AI Labs repo under the `notebooks' folder
+8. Clone the lab repo under the `notebooks' folder
 
 ```
 cd notebooks
-git clone <repo URL git file>
+git clone <repo URL .git file>
 ```
 
 ### Provision and configure Custom Vision Service
