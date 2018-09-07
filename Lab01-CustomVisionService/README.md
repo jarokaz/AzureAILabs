@@ -102,7 +102,7 @@ https://portal.azure.com
   ![Keys](images/img24.PNG)
   
   
-6. Click on *Keys*. You will need one of the keys later in the lab. 
+6. Click on **Keys**. You will need one of the keys later in the lab. 
 
 Congratulations! Your lab environment is ready.
 
