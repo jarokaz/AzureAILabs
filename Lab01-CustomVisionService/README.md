@@ -34,10 +34,10 @@ Although you can install all of the components required to complete the lab on y
 
 To complete the lab you will need the following pre-requisities:
 
-- A basic proficiency in Python programming
+- Basic proficiency in Python programming
 - A valid Microsoft account or an Azure Active Directory OrgID ("work or school account")
 - An Azure subscription associated with your Microsoft Account or OrgID. If you don’t have an Azure subscription, you can create a trial subscription before you begin.
-- A workstation with the internet browser - preferably Chrome.
+- A workstation with an internet browser - preferably Chrome.
 
 To configure the lab's environment follow the below steps:
 
