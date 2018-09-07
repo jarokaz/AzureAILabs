@@ -68,7 +68,7 @@ https://portal.azure.com
 
 https://https://your-vm-ip:8000.
 
-7. Click on **New* and open a terminal window
+7. Click on **New** and open a terminal window
 
 ![Terminal](images/img30.PNG)
 
@@ -89,7 +89,7 @@ https://portal.azure.com
 
 2. Click on **Create a resource** in the top left corner
 
-3. Enter *Custom Vision* in the search text box and select **Custom Vision (preview)* from search results.
+3. Enter *Custom Vision* in the search text box and select **Custom Vision (preview)** from search results.
 
 ![Custom vision](images/img22.PNG)
 
