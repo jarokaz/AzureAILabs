@@ -49,7 +49,7 @@ You will use Azure Portal to provision Azure DSVM.
 
 https://portal.azure.com
 
-2. Click on **Create a resource** in the top left corner
+2. Click on *Create a resource* in the top left corner
 
 3. Enter *Data Science Virtual Machine* in the search text box
 
