@@ -108,5 +108,7 @@ Congratulations! Your lab environment is ready.
 
 Navigate back to Jupyter and start `train.ipynb` notebook.
 
+blab
+
 
 
